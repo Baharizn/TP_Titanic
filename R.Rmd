@@ -1,0 +1,76 @@
+---
+title: "Analyse.Rmd2"
+output: html_document
+date: "2024-11-18"
+---
+```{r setup , include=FALSE}
+ knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("carData")
+```
+
+```{r}
+library(carData)
+```
+
+
+```{r}
+#df("TitaticSurvival")
+head(TitanicSurvival)
+summary(TitanicSurvival)
+```
+
+
+```{r}
+#install.packages("ggplot2")
+```
+```{r}
+library(ggplot2)
+```
+```{r}
+ggplot(TitanicSurvival, aes(x = sex, fill = survived)) +
+  geom_bar(position = "dodge") +
+  facet_wrap(~passengerClass) +
+  labs(title = "Répartition des survivants par sexe et classe", x = "Sexe", y = "Nombre")
+
+```
+nterprétation des résultats :
+Répartition par classe et sexe :
+
+Première classe (1st) :
+Les femmes ont un taux de survie nettement plus élevé que les hommes. Très peu de femmes n’ont pas survécu.
+Les hommes, en revanche, montrent un taux de survie relativement bas.
+Deuxième classe (2nd) :
+Les femmes continuent de montrer un taux de survie plus élevé que les hommes, mais les différences sont moins marquées qu’en première classe.
+Les hommes ont un taux de survie encore assez faible.
+Troisième classe (3rd) :
+La majorité des hommes n'ont pas survécu, avec un nombre très élevé de décès.
+Les femmes ont également un taux de survie plus bas comparé aux deux premières classes, mais elles survivent en proportion plus que les hommes.
+Tendances générales :
+
+Sexe : Les femmes ont globalement de meilleures chances de survie que les hommes, quel que soit le niveau de classe.
+Classe : La classe semble être un facteur déterminant pour la survie :
+La première classe présente les meilleures chances de survie.
+La troisième classe montre des taux de survie beaucoup plus faibles, particulièrement pour les hommes.
+```{r}
+ggplot(TitanicSurvival, aes(x = survived, y = age)) +
+  geom_boxplot() +
+  labs(title = "Distribution de l'âge par statut de survie", x = "Survie", y = "Âge")
+```
+
+#D'après le boxplot :
+
+Distribution de l'âge en fonction du statut de survie :
+
+Âge médian : L'âge médian des survivants ("yes") et des non-survivants ("no") est très similaire, autour de 30 ans.
+Plage d'âge : La plage d'âge des deux groupes est également comparable, allant des nourrissons (près de 0 ans) jusqu'à environ 80 ans.
+Valeurs aberrantes (outliers) : On observe quelques individus âgés dans les deux groupes, avec des valeurs légèrement plus marquées chez les non-survivants.
+Observations clés :
+
+Ces résultats montrent que l'âge seul ne semble pas être un facteur déterminant pour la survie, étant donné que les médianes et les plages d'âge sont similaires entre les deux groupes.
+Une analyse plus approfondie pourrait être nécessaire pour examiner si l'âge interagit avec d'autres variables, comme le sexe ou la classe, pour influencer la survie.
+
+
+
